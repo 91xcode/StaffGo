@@ -1,0 +1,8 @@
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"zap init success"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"redis init success"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"ttl:10m0s"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"client.Set(twitter_65692284671,10m0s,{\"token\":\"65692284671\",\"secret\":\"aktest\"})"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"rst:<nil>"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"{\"token\":\"65692284671\",\"secret\":\"aktest\"}"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"result:&{65692284671 aktest}"}
+{"level":"info","datetime":"2020-09-03 10:58:13","message":"ret:<nil>"}

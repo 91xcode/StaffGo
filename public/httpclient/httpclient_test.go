@@ -1,0 +1,11 @@
+package httpclient
+
+import (
+	"testing"
+)
+
+func TestGet(t *testing.T) {
+	url := "http://124.239.223.21/vhot2.qqvideo.tc.qq.com/o01872vmyt3.mp4?vkey=B1242F62B3B3D5C03F7EA60B066F71FBE661B49D84CCA352F88EE6FB648F0D95ECDE5B6BA0A54F4815A53917AE4FB8C5CA83FB0D45B28246599A00E53EA0DB6F950FCAC170F99A1C6FA6AFD38B73B63661648D0C50176739"
+	buff, err := GetData(url, nil)
+	t.Logf("[%v]%s", err, buff)
+}

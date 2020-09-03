@@ -30,6 +30,7 @@ go: creating new go.mod: module code.be.staff.com/staff/StaffGo
 
 9.thrift的使用 支持go/php/python
 
+10.go的test学习 
 
 
 
