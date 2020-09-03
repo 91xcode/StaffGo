@@ -56,6 +56,16 @@ func CloseDB(){
 }
 
 
+func getById(id int) (User) {
+	var user User
+	err := DB.QueryRow("SELECT * FROM user WHERE id = ?", id).Scan(&user.Id, &user.Username, &user.Password)
+	if err != nil{
+		fmt.Println("查询出错了")
+	}
+	return user
+}
+
+
 func getAll()([]User){
 	rows,err:=DB.Query("select * from user")
 	if err!=nil{
