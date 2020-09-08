@@ -1,0 +1,19 @@
+{
+    "name": "liubing/php-client",
+    "authors": [
+        {
+            "name": "liubing1",
+            "email": "liubing1@conew.com"
+        }
+    ],
+    "require": {
+        "grpc/grpc": "^1.30",
+        "google/protobuf": "^3.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "User\\": "./user/User/",
+            "GPBMetadata\\": "./user/GPBMetadata/"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"zap init success"}
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"init Mongo:&{127.0.0.1:27017   Test TestModel 4096}"}
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"mongo init success"}
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"add start two============>"}
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"rst:true"}
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"getOne============>"}
+{"level":"info","datetime":"2020-09-08 14:47:19","message":"res:{Id:ObjectIdHex(\"5f48c259b6dccad7b2c014b8\") Title:标题 Des:博客描述信息 Content:博客的内容信息 Img:https://upload-images.jianshu.io/upload_images/8679037-67456031925afca6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700 Date:2020-08-28 16:37:45.918 +0800 CST}"}

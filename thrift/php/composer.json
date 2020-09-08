@@ -1,0 +1,13 @@
+{
+    "name": "liubing/php",
+    "authors": [
+        {
+            "name": "liubing1",
+            "email": "liubing1@conew.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": ["thrift/","handler.php"]
+    }
+}
