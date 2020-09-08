@@ -24,7 +24,8 @@ func run(){
 	collector := colly.NewCollector(
 		// 设置用户代理
 		colly.UserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"),
-	)
+		colly.Async(true),  //异步
+		)
 
 	// 设置抓取频率限制
 	collector.Limit(&colly.LimitRule{
@@ -80,6 +81,7 @@ func run(){
 	// 起始入口
 	collector.Visit(startUrl)
 
+	collector.Wait()  //异步
 }
 
 
@@ -114,6 +116,7 @@ func parseDetail(collector *colly.Collector, url string)(rst Meizi,err error){
 	})
 
 	collector.Visit(url)
+	collector.Wait() //异步
 	return rst,err
 }
 
