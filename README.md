@@ -34,6 +34,8 @@ go: creating new go.mod: module code.be.staff.com/staff/StaffGo
 
 11.meizi中的colly学习
 
+12.goroutine的学习
+
 
 
 ```
