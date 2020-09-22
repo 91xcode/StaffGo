@@ -1,6 +1,6 @@
 package main
 
-//1千万数据 500个goroutine消费 10个数据库链接 1000条批量插入
+//1千万数据 500个goroutine消费 10个数据库链接 1000条批量插入  花费时间 5m40s
 
 import (
 	"code.be.staff.com/staff/StaffGo/public/mysql"
