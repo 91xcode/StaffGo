@@ -1,6 +1,8 @@
 package main
 
-//1千万数据 500个goroutine消费 10个数据库链接 1000条批量插入  花费时间 5m40s
+//1千万数据 500个goroutine消费 10个数据库链接 1000条批量插入  花费时间 2m50s
+
+//初始化slice的时候 设置一个初始的容量 效率会高很多
 
 import (
 	"code.be.staff.com/staff/StaffGo/public/mysql"
@@ -76,6 +78,20 @@ func initDB(){
 	}
 
 
+
+	sql := 	`create table if not exists kfperson(
+		  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  note varchar(255) NOT NULL DEFAULT '',
+		  create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		  num int(10) NOT NULL,
+	      PRIMARY KEY (id)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8`
+	//必要时先建表
+	_, err := mysql.Exec(sql)
+	HandleError(err, "db.Exec create table")
+	fmt.Println("数据表已创建")
+
+
 }
 
 
@@ -84,6 +100,14 @@ func closeDB(){
 }
 
 
+/*处理错误*/
+func HandleError(err error, when string) {
+	if err != nil {
+		log.Fatal(err, when)
+	}
+}
+
+const ThresholdNum  = 1000
 
 func main(){
 
@@ -95,7 +119,7 @@ func main(){
 	consumerHandler := func(jobs chan *Job)(b bool) {
 
 		//创建kfs切片，长度达到阈值时，做一次数据库写入操作
-		kfs := make([]*Job, 0)
+		kfs := make([]*Job, 0,ThresholdNum)
 
 		for item := range jobs {
 			//fmt.Println(item)
@@ -103,14 +127,14 @@ func main(){
 			kfs = append(kfs, &Job{Data: item.Data, Id: item.Id})
 
 			//切片中的数据量每达到1000（或者管道已关闭），就执行一次数数据库写入操作
-			if len(kfs) == 1000 {
+			if len(kfs) == ThresholdNum {
 				fmt.Println("this \n")
 				//执行数据库插入
 				insertData2DB(kfs)
 
 				//清空切片并重新创建
 				CleanSlice(kfs)
-				kfs = make([]*Job, 0)
+				kfs = make([]*Job, 0,ThresholdNum)
 			}
 		}
 
@@ -120,7 +144,7 @@ func main(){
 
 		//清空切片并重新创建
 		CleanSlice(kfs)
-		kfs = make([]*Job, 0)
+		kfs = make([]*Job, 0,ThresholdNum)
 		return
 
 
