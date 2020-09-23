@@ -107,7 +107,7 @@ func HandleError(err error, when string) {
 	}
 }
 
-const ThresholdNum  = 1000
+const LEN  = 1000
 
 func main(){
 
@@ -119,7 +119,7 @@ func main(){
 	consumerHandler := func(jobs chan *Job)(b bool) {
 
 		//创建kfs切片，长度达到阈值时，做一次数据库写入操作
-		kfs := make([]*Job, 0,ThresholdNum)
+		kfs := make([]*Job, 0,LEN)
 
 		for item := range jobs {
 			//fmt.Println(item)
@@ -127,14 +127,14 @@ func main(){
 			kfs = append(kfs, &Job{Data: item.Data, Id: item.Id})
 
 			//切片中的数据量每达到1000（或者管道已关闭），就执行一次数数据库写入操作
-			if len(kfs) == ThresholdNum {
+			if len(kfs) == LEN {
 				fmt.Println("this \n")
 				//执行数据库插入
 				insertData2DB(kfs)
 
 				//清空切片并重新创建
 				CleanSlice(kfs)
-				kfs = make([]*Job, 0,ThresholdNum)
+				kfs = make([]*Job, 0,LEN)
 			}
 		}
 
@@ -144,7 +144,7 @@ func main(){
 
 		//清空切片并重新创建
 		CleanSlice(kfs)
-		kfs = make([]*Job, 0,ThresholdNum)
+		kfs = make([]*Job, 0,LEN)
 		return
 
 
