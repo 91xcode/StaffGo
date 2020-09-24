@@ -5,6 +5,7 @@ package main
 //初始化slice的时候 设置一个初始的容量 效率会高很多
 
 import (
+	"code.be.staff.com/staff/StaffGo/public/common"
 	"code.be.staff.com/staff/StaffGo/public/mysql"
 	"fmt"
 	"log"
@@ -88,7 +89,7 @@ func initDB(){
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8`
 	//必要时先建表
 	_, err := mysql.Exec(sql)
-	HandleError(err, "db.Exec create table")
+	common.HandleError(err, "db.Exec create table")
 	fmt.Println("数据表已创建")
 
 
@@ -100,18 +101,14 @@ func closeDB(){
 }
 
 
-/*处理错误*/
-func HandleError(err error, when string) {
-	if err != nil {
-		log.Fatal(err, when)
-	}
-}
 
 const LEN  = 1000
 
 func main(){
 
-	defer timeCost()()		//注意，是对 timeCost() 返回的函数进行延迟调用，因此需要加两对小括号
+
+	defer common.TimeCost()()  //注意，是对 timeCost() 返回的函数进行延迟调用，因此需要加两对小括号
+
 
 	initDB()
 
