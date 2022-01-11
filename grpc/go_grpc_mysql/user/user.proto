@@ -1,0 +1,28 @@
+syntax="proto3"; //协议
+
+option go_package = ".;user";
+
+package pb;
+
+//定义service服务 会翻译为UserServiceClient 和 userServiceClient 和对外暴露的 NewUserServiceClient供客户端调用
+//还会翻译为UserServiceServer接口(UserList方法在内 并且实现了UserList方法并且内部会去调用UserList方法) 和 对外暴露的RegisterUserServiceServer 供服务端调用
+service UserService{
+    rpc UserList(RequestUser) returns (ResponseUser){};
+}
+//会翻译成RequestUser结构体 里面包含name string | mobile string 字段
+message RequestUser{
+    string name = 1;
+    string mobile = 2;
+}
+//会翻译成ResponseUser结构体 里面包含 User []*User 字段
+message ResponseUser{
+    repeated User user = 1;
+}
+//会翻译成User结构体 里面包含 name string | mobile string | age int64 字段
+message User{
+    string name = 1;
+    string mobile = 2;
+    int64 age = 3;
+}
+
+

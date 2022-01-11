@@ -38,3 +38,25 @@ func worker(url string, wg *sync.WaitGroup) {
 	fmt.Printf("finish worker url:%s\n", url)
 	return
 }
+
+
+
+func test(){
+	var wg sync.WaitGroup
+	urlList:=[]string{
+		"a.com","b.com",
+	}
+
+	for _,item:=range urlList{
+		wg.Add(1)
+		go workers(&wg,item)
+	}
+
+	wg.Wait()
+}
+
+func workers(wg *sync.WaitGroup ,item string){
+	defer wg.Done()
+	fmt.Printf("url:%s",item)
+	return
+}

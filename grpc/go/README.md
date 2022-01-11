@@ -59,6 +59,7 @@ vim user.proto
 
 syntax = "proto3";
  
+option go_package = "./user;user";
 package user;
 
 service User {
@@ -117,7 +118,7 @@ message UserDeleteResponse {
 生成接口库
 protoc-gen-go，这个工具用来将 .proto 文件转换为 Golang 代码
 
-protoc -I. --go_out=plugins=grpc:./user user.proto
+protoc -I. --go_out=plugins=grpc:. user.proto
 
 编写服务端
 vim server.go
@@ -129,7 +130,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	user "staff_go/grpc/user"
+	"code.be.staff.com/staff/StaffGo/grpc/go/user"
 )
 
 const (
@@ -215,7 +216,7 @@ package main
 import (
 	"google.golang.org/grpc"
 	"log"
-	user "staff_go/grpc/user"
+	"code.be.staff.com/staff/StaffGo/grpc/go/user"
 	"time"
 	"context"
 	"fmt"

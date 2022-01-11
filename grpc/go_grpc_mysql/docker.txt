@@ -1,0 +1,28 @@
+
+========================正式开始===================
+docker pull golang
+
+
+
+
+docker run --rm -it -v /Users/liubing/docker_env/grpc:/root/docker_env/StaffGo/grpc/go_grpc_mysql -p 8052:8052 --name go-test golang /bin/bash 
+
+
+
+cd /root/docker_env/StaffGo/
+
+go mod init code.be.staff.com/staff/StaffGo
+
+go mod tidy
+
+
+
+
+进入另一个终端
+docker exec -it go-test /bin/bash 
+
+cd /root/docker_env/StaffGo/grpc/go_grpc_mysql/service &&  go run service.go 
+
+
+在宿主机 执行 http://127.0.0.1:8052/rpc/get-user-list
+
