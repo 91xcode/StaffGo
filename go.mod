@@ -21,6 +21,7 @@ require (
 	github.com/onsi/gomega v1.10.2 // indirect
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/smartystreets/goconvey v1.6.4 // indirect
+	github.com/streadway/amqp v1.0.0 // indirect
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	github.com/urfave/cli v1.22.4 // indirect
 	go.uber.org/zap v1.16.0
