@@ -1,10 +1,12 @@
 
-
-mkdir go_grpc_mysql && mkdir go_grpc_mysql/client && mkdir go_grpc_mysql/service && mkdir go_grpc_mysql/pb
-
-cd go_grpc_mysql/pb
+tips:https://www.cnblogs.com/sunshenggang/p/12396500.html
 
 
+mkdir go_grpc_mysql && mkdir go_grpc_mysql/client && mkdir go_grpc_mysql/service && go_grpc_mysql/user
+
+
+
+cd user
 
 -------------------------
 
@@ -41,5 +43,5 @@ message User{
 
 生成接口库
 
-cd pb
+cd user
 protoc -I. --go_out=plugins=grpc:. user.proto

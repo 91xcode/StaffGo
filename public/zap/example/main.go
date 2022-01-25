@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "staff_go/public/zap"
+	. "code.be.staff.com/staff/StaffGo/public/zap"
 	"time"
 )
 
